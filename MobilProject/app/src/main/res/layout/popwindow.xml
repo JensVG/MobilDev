@@ -14,5 +14,5 @@
         android:layout_marginTop="343dp"
         android:layout_marginEnd="191dp"
         android:layout_marginBottom="369dp"
-        android:text="Pop" />
+        android:text="@string/pop" />
 </RelativeLayout>
