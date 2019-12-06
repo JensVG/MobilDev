@@ -20,11 +20,11 @@ public class Pop extends Activity {
 
         getWindow().setLayout((int) (width*.8),(int) (height*.6));
 
-        WindowManager.LayoutParams parans = getWindow().getAttributes();
-        parans.gravity = Gravity.CENTER;
-        parans.x = 0;
-        parans.y = -20;
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.gravity = Gravity.CENTER;
+        params.x = 0;
+        params.y = -20;
 
-        getWindow().setAttributes(parans);
+        getWindow().setAttributes(params);
     }
 }

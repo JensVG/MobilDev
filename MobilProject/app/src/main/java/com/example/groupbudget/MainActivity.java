@@ -23,18 +23,18 @@ package com.example.groupbudget;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button Pop;
+    Button addGroupBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Pop = (Button) findViewById(R.id.addGroupBtn);
+        addGroupBtn = (Button) findViewById(R.id.addGroupBtn);
 
-        Pop.setOnClickListener(new View.OnClickListener() {
+        addGroupBtn.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
+                    public void onClick(View view){
                 Intent i = new Intent(getApplicationContext(), Pop.class);
                 startActivity(i);
             }
