@@ -18,31 +18,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
-public class Pop extends AppCompatActivity {
-
-    private Button submitGroupBtn;
-    private EditText et;
-    private String st;
-
+public class Event extends AppCompatActivity {
+    private Button submitEventBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pop);
-        submitGroupBtn = (Button) findViewById(R.id.submitGroupBtn);
-        et = findViewById(R.id.editText);
-        submitGroupBtn.setOnClickListener(new View.OnClickListener(){
+        setContentView(R.layout.activity_event);
+        submitEventBtn = (Button) findViewById(R.id.addEventBtn);
+        submitEventBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent i = new Intent(Pop.this,Group.class);
-                st = et.getText().toString();
-                i.putExtra("Value",st);
-                startActivity(i);
-                finish();
+                openAddGroupScreen();
             }
         });
     }

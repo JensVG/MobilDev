@@ -8,26 +8,29 @@
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="213dp"
+        android:layout_height="48dp"
         android:ems="10"
+        android:hint="Add Group Name"
         android:inputType="textPersonName"
-        android:text="             Group Name"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="o" />
 
     <Button
         android:id="@+id/submitGroupBtn"
         android:layout_width="132dp"
         android:layout_height="65dp"
+        android:layout_below="@+id/editText"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:background="#009688"
-        android:text="Submit"
+        android:text="@string/submit"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
