@@ -26,8 +26,8 @@ import android.widget.RelativeLayout;
 
 public class Group extends AppCompatActivity {
     private Button addEventBtn;
-     TextView tv;
-     String st;
+    private TextView tv;
+    private String st;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +38,13 @@ public class Group extends AppCompatActivity {
         tv.setText(st);
 
         addEventBtn = (Button) findViewById(R.id.addEventBtn);
-        addEventBtn.setOnClickListener(new View.OnClickListener(){
+        addEventBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                openAddGroupScreen();
+            public void onClick(View view) {
+                Intent i = new Intent(Group.this, Event.class);
+                startActivity(i);
+                finish();
             }
         });
-    }
-    public void openAddGroupScreen(){
-        Intent intent = new Intent(this,Event.class);
-        startActivity(intent);
     }
 }

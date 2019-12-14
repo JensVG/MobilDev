@@ -35,19 +35,15 @@ public class Pop extends AppCompatActivity {
         setContentView(R.layout.activity_pop);
         submitGroupBtn = (Button) findViewById(R.id.submitGroupBtn);
         et = findViewById(R.id.editText);
-        submitGroupBtn.setOnClickListener(new View.OnClickListener(){
+        submitGroupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                Intent i = new Intent(Pop.this,Group.class);
+            public void onClick(View view) {
+                Intent i = new Intent(Pop.this, Group.class);
                 st = et.getText().toString();
-                i.putExtra("Value",st);
+                i.putExtra("Value", st);
                 startActivity(i);
                 finish();
             }
         });
-    }
-    public void openAddGroupScreen(){
-        Intent intent = new Intent(this,Group.class);
-        startActivity(intent);
     }
 }

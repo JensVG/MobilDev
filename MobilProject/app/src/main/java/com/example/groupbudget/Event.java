@@ -28,16 +28,5 @@ public class Event extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
-        submitEventBtn = (Button) findViewById(R.id.addEventBtn);
-        submitEventBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                openAddGroupScreen();
-            }
-        });
-    }
-    public void openAddGroupScreen(){
-        Intent intent = new Intent(this,Group.class);
-        startActivity(intent);
     }
 }
