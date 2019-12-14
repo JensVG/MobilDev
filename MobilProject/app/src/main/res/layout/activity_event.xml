@@ -7,7 +7,7 @@
     tools:context=".Event">
 
     <Button
-        android:id="@+id/submitEventbtn"
+        android:id="@+id/submitEventBtn"
         android:layout_width="132dp"
         android:layout_height="65dp"
         android:layout_marginEnd="24dp"
@@ -24,7 +24,7 @@
         android:layout_marginTop="64dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Add An Event Name"
+        android:hint="Add An Event Name"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
         android:layout_marginTop="64dp"
         android:ems="10"
         android:inputType="number"
-        android:text="How Much Persons"
+        android:hint="How Much People"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +50,7 @@
         android:layout_marginTop="64dp"
         android:ems="10"
         android:inputType="number"
-        android:text="How Much Did It Cost"
+        android:hint="How Much Did It Cost"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
