@@ -75,11 +75,17 @@ public class MainActivity extends AppCompatActivity {
                         .setPositiveButton("Add Group", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                GroupNamesList.add(groupnameInput.getText().toString());
-                                adapter.setData(GroupNamesList);
-                                //adapter.writeData(GroupNamesList);
-                                scrollView.setVisibility(View.VISIBLE);
-                                placeHolder.setVisibility(View.GONE);
+                                if(groupnameInput.getText().toString().equals(""))
+                                    Toast.makeText(MainActivity.this,"Please add an valide group name",Toast.LENGTH_SHORT).show();
+
+                                else {
+
+                                    GroupNamesList.add(groupnameInput.getText().toString());
+                                    adapter.setData(GroupNamesList);
+                                    //adapter.writeData(GroupNamesList);
+                                    scrollView.setVisibility(View.VISIBLE);
+                                    placeHolder.setVisibility(View.GONE);
+                                }
                             }
                         })
                         .setNegativeButton("Cancel", null)
@@ -90,7 +96,9 @@ public class MainActivity extends AppCompatActivity {
         groups_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, GroupNamesList.get(position),Toast.LENGTH_SHORT ).show();
+                Intent i = new Intent(MainActivity.this, Group.class);
+                startActivity(i);
+                finish();
             }
         });
     }
