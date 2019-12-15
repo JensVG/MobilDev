@@ -37,6 +37,7 @@
         android:layout_marginTop="24dp"
         android:gravity="center_horizontal"
         android:text="Momenteel is er nog geen activiteit vast gesteld"
+        android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
