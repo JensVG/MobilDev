@@ -22,6 +22,8 @@ import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 
 public class Pop extends AppCompatActivity {
 
@@ -39,6 +41,20 @@ public class Pop extends AppCompatActivity {
         submitGroupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Write to file
+                try{
+                    FileOutputStream fileout=openFileOutput("groupnamefile.txt", MODE_PRIVATE);
+                    OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
+                    outputWriter.write(et.getText().toString() + ",");
+                    outputWriter.close();
+
+                    //Display file saved message
+                    Toast.makeText(getBaseContext(), "Group Added!",Toast.LENGTH_SHORT).show();
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
+
                 if(et.getText().toString().equals(""))
                   Toast.makeText(Pop.this,"Please add an group name", Toast.LENGTH_SHORT).show();
 

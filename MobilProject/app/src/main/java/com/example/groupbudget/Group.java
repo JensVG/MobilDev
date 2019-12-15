@@ -23,6 +23,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import org.w3c.dom.Text;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 
 public class Group extends AppCompatActivity {
     private Button addEventBtn;
@@ -34,11 +37,34 @@ public class Group extends AppCompatActivity {
     private String st3;
     private TextView tv4;
     private String st4;
+    static final int READ_BLOCK_SIZE = 100;
+    TextView groupName_textview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
+        groupName_textview = (TextView)findViewById(R.id.GroupName);
+        //Read Group name from file
+        try{
+            FileInputStream fileIn=openFileInput("groupnamefile.txt");
+            InputStreamReader InputRead= new InputStreamReader(fileIn);
+
+            char[] inputBuffer= new char[READ_BLOCK_SIZE];
+            String s="";
+            int charRead;
+
+            while((charRead=InputRead.read(inputBuffer)) > 0){
+                String readstring = String.copyValueOf(inputBuffer,0,charRead);
+                s+=readstring;
+            }
+            InputRead.close();
+            groupName_textview.setText(s);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
         tv = findViewById(R.id.textView);
         tv2 = findViewById(R.id.textView2);
         tv3 = findViewById(R.id.textView3);
