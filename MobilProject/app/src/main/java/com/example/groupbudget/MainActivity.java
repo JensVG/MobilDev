@@ -20,6 +20,7 @@ package com.example.groupbudget;
         import android.view.Menu;
         import android.view.MenuItem;
         import android.view.ViewGroup;
+        import android.widget.AdapterView;
         import android.widget.ArrayAdapter;
         import android.widget.BaseAdapter;
         import android.widget.Button;
@@ -27,6 +28,7 @@ package com.example.groupbudget;
         import android.widget.ListView;
         import android.widget.PopupWindow;
         import android.widget.RelativeLayout;
+        import android.widget.ScrollView;
         import android.widget.TextView;
         import android.widget.Toast;
 
@@ -50,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final TextView placeHolder = findViewById(R.id.txt_EmptyGroupPlaceHolder);
+        final ScrollView scrollView = findViewById(R.id.scrollable);
+
         final ListView groups_listview =  findViewById(R.id.listview_GroupList);
         final Button addGroupBtn = findViewById(R.id.addGroupBtn);
         final GroupAdapter adapter = new GroupAdapter();
@@ -74,12 +78,19 @@ public class MainActivity extends AppCompatActivity {
                                 GroupNamesList.add(groupnameInput.getText().toString());
                                 adapter.setData(GroupNamesList);
                                 //adapter.writeData(GroupNamesList);
+                                scrollView.setVisibility(View.VISIBLE);
                                 placeHolder.setVisibility(View.GONE);
                             }
                         })
                         .setNegativeButton("Cancel", null)
                         .create();
                 dialog.show();
+            }
+        });
+        groups_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(MainActivity.this, GroupNamesList.get(position),Toast.LENGTH_SHORT ).show();
             }
         });
     }
