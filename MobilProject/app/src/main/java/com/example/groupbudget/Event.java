@@ -61,7 +61,13 @@ public class Event extends AppCompatActivity {
                    int Price = number2 / number1;
                    Intent i = new Intent(Event.this, Group.class);
                    st2 = et2.getText().toString();
+                   st3 = et3.getText().toString();
+                   st4 = et4.getText().toString();
+
                    i.putExtra("Momenteel is er nog geen activiteit vast gesteld", st2);
+                   i.putExtra("aantal", st3);
+                   i.putExtra("bedrag", st4);
+
                    startActivity(i);
                    finish();
                    //startActivityForResult(i,1);

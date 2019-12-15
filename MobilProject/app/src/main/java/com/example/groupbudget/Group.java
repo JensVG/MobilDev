@@ -71,8 +71,8 @@ public class Group extends AppCompatActivity {
         tv4 = findViewById(R.id.textView4);
         st = getIntent().getExtras().getString("Value");
         st2 = getIntent().getExtras().getString("Momenteel is er nog geen activiteit vast gesteld");
-        st3 = getIntent().getExtras().getString("");
-        st4 = getIntent().getExtras().getString("");
+        st3 = getIntent().getExtras().getString("aantal");
+        st4 = getIntent().getExtras().getString("bedrag");
         tv.setText(st);
         tv2.setText(st2);
         tv3.setText(st3);
