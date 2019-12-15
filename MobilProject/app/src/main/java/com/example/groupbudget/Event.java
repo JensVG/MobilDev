@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 public class Event extends AppCompatActivity {
 
@@ -43,31 +44,34 @@ public class Event extends AppCompatActivity {
         submitEventBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Invullen1();
+               if(et2.getText().toString().equals("") || et3.getText().toString().equals("") || et4.getText().toString().equals("")){
 
-                Intent i3 = new Intent(Event.this, Group.class);
-                st3 = et3.getText().toString();
-                i3.putExtra("", st3);
-                startActivity(i3);
+                   if(et2.getText().toString().equals(""))
+                       Toast.makeText(Event.this,"Please an event name",Toast.LENGTH_LONG).show();
 
-                finish();
+                   else if(et3.getText().toString().equals(""))
+                   Toast.makeText(Event.this,"Please insert number of people",Toast.LENGTH_LONG).show();
 
-                Intent i4 = new Intent(Event.this, Group.class);
-                st4 = et4.getText().toString();
-                i4.putExtra("", st4);
-                startActivity(i4);
-
-                finish();
+                   else
+                       Toast.makeText(Event.this,"Please insert a cost price",Toast.LENGTH_LONG).show();
+               }
+               else{
+                   int number1 = Integer.parseInt(et3.getText().toString());
+                   int number2 = Integer.parseInt(et4.getText().toString());
+                   Intent i = new Intent(Event.this, Group.class);
+                   i.putExtra("", number1);
+                   i.putExtra("", number2);
+                   startActivityForResult(i,1);
+               }
             }
         });
     }
 
     public void Invullen1(){
 
-        Intent i2 = new Intent(Event.this, Group.class);
+        Intent i = new Intent(Event.this, Group.class);
         st2 = et2.getText().toString();
-        i2.putExtra("Momenteel is er nog geen activiteit vast gesteld", st2);
-        startActivity(i2);
-        finish();
+        i.putExtra("Momenteel is er nog geen activiteit vast gesteld", st2);
+        startActivity(i);
     }
 }
