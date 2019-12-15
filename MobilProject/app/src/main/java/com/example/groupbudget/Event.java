@@ -47,13 +47,13 @@ public class Event extends AppCompatActivity {
                if(et2.getText().toString().equals("") || et3.getText().toString().equals("") || et4.getText().toString().equals("")){
 
                    if(et2.getText().toString().equals(""))
-                       Toast.makeText(Event.this,"Please add an event name",Toast.LENGTH_LONG).show();
+                       Toast.makeText(Event.this,"Please add an event name",Toast.LENGTH_SHORT).show();
 
                    else if(et3.getText().toString().equals(""))
-                   Toast.makeText(Event.this,"Please insert number of people",Toast.LENGTH_LONG).show();
+                   Toast.makeText(Event.this,"Please insert number of people",Toast.LENGTH_SHORT).show();
 
                    else
-                       Toast.makeText(Event.this,"Please insert a cost price",Toast.LENGTH_LONG).show();
+                       Toast.makeText(Event.this,"Please insert a cost price",Toast.LENGTH_SHORT).show();
                }
                else{
                    int number1 = Integer.parseInt(et3.getText().toString());

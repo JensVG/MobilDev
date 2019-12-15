@@ -40,7 +40,7 @@ public class Pop extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(et.getText().toString().equals(""))
-                  Toast.makeText(Pop.this,"Please add an group name", Toast.LENGTH_LONG).show();
+                  Toast.makeText(Pop.this,"Please add an group name", Toast.LENGTH_SHORT).show();
 
                 else{
                 Intent i = new Intent(Pop.this, Group.class);
