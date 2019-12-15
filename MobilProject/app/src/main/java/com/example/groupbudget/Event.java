@@ -58,10 +58,13 @@ public class Event extends AppCompatActivity {
                else{
                    int number1 = Integer.parseInt(et3.getText().toString());
                    int number2 = Integer.parseInt(et4.getText().toString());
+                   int Price = number2 / number1;
                    Intent i = new Intent(Event.this, Group.class);
-                   i.putExtra("", number1);
-                   i.putExtra("", number2);
-                   startActivityForResult(i,1);
+                   st2 = et2.getText().toString();
+                   i.putExtra("Momenteel is er nog geen activiteit vast gesteld", st2);
+                   startActivity(i);
+                   finish();
+                   //startActivityForResult(i,1);
                }
             }
         });
