@@ -5,4 +5,10 @@
     <string name="submit">Submit</string>
     <string name="add_a_group_name_here">Add a group name here</string>
     <string name="add_group">add group</string>
+
+    <string name="EmptyGroupListPreview">Add new Group</string>
+    <string name="txt_groupMembersHeader">Members:</string>
+    <string name="btn_add_member">Add Member</string>
+    <string name="txt_eventsHeader">Events:</string>
+    <string name="btn_add_event">Add Event</string>
 </resources>

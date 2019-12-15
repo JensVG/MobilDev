@@ -6,56 +6,62 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="18"
-8-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml
+8-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="29" />
-9-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml
+9-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml
 10
 11    <application
-11-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:5:5-25:19
+11-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:5:5-27:19
 12        android:allowBackup="true"
-12-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:6:9-35
+12-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:6:9-35
 13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-13-->[androidx.core:core:1.0.1] C:\Users\Jens\.gradle\caches\transforms-2\files-2.1\8f8ab13dc8f4e84e14a8bb3d9ac92bc4\core-1.0.1\AndroidManifest.xml:22:18-86
+13-->[androidx.core:core:1.0.1] C:\Users\wanvi\.gradle\caches\transforms-2\files-2.1\8f8ab13dc8f4e84e14a8bb3d9ac92bc4\core-1.0.1\AndroidManifest.xml:22:18-86
 14        android:debuggable="true"
 15        android:icon="@mipmap/ic_launcher"
-15-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:7:9-43
+15-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:7:9-43
 16        android:label="@string/app_name"
-16-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:8:9-41
+16-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:8:9-41
 17        android:roundIcon="@mipmap/ic_launcher_round"
-17-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:9:9-54
+17-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:9:9-54
 18        android:supportsRtl="true"
-18-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:10:9-35
+18-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:10:9-35
 19        android:testOnly="true"
 20        android:theme="@style/AppTheme" >
-20-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:11:9-40
+20-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:11:9-40
 21        <activity android:name="com.example.groupbudget.Event" />
-21-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:12:9-52
-21-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:12:19-40
+21-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:12:9-52
+21-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:12:19-40
 22        <activity android:name="com.example.groupbudget.Group" />
-22-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:13:9-43
-22-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:13:19-40
-23        <activity android:name="com.example.groupbudget.Pop" />
-23-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:14:9-41
-23-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:14:19-38
-24        <activity
-24-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:15:9-24:20
-25            android:name="com.example.groupbudget.MainActivity"
-25-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:16:13-41
-26            android:label="@string/app_name"
-26-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:17:13-45
-27            android:theme="@style/AppTheme.NoActionBar" >
-27-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:18:13-56
-28            <intent-filter>
-28-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:19:13-23:29
-29                <action android:name="android.intent.action.MAIN" />
-29-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:20:17-69
-29-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:20:25-66
-30
-31                <category android:name="android.intent.category.LAUNCHER" />
-31-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:22:17-77
-31-->C:\Users\Jens\Desktop\Project\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:22:27-74
-32            </intent-filter>
-33        </activity>
-34    </application>
-35
-36</manifest>
+22-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:13:9-43
+22-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:13:19-40
+23        <activity android:name="com.example.groupbudget.View_Event" />
+23-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:14:9-57
+23-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:14:19-45
+24        <activity android:name="com.example.groupbudget.View_Group" />
+24-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:15:9-48
+24-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:15:19-45
+25        <activity android:name="com.example.groupbudget.Pop" />
+25-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:16:9-41
+25-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:16:19-38
+26        <activity
+26-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:17:9-26:20
+27            android:name="com.example.groupbudget.MainActivity"
+27-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:18:13-41
+28            android:label="@string/app_name"
+28-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:19:13-45
+29            android:theme="@style/AppTheme.NoActionBar" >
+29-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:20:13-56
+30            <intent-filter>
+30-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:21:13-25:29
+31                <action android:name="android.intent.action.MAIN" />
+31-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:22:17-69
+31-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:22:25-66
+32
+33                <category android:name="android.intent.category.LAUNCHER" />
+33-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:24:17-77
+33-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:24:27-74
+34            </intent-filter>
+35        </activity>
+36    </application>
+37
+38</manifest>
