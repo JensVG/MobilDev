@@ -31,7 +31,6 @@ package com.example.groupbudget;
         import android.widget.ScrollView;
         import android.widget.TextView;
         import android.widget.Toast;
-
         import org.w3c.dom.Text;
 
         import java.io.FileInputStream;
@@ -46,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     final List<String>GroupNamesList = new ArrayList<>();
     //public static final String GROUP_NAMES=
             //"com.example.android.groupbudget.extra.GROUPNAMES";
+    private EditText et;
+    private String st;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,9 +78,7 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 if(groupnameInput.getText().toString().equals(""))
                                     Toast.makeText(MainActivity.this,"ERROR : empty group name",Toast.LENGTH_SHORT).show();
-
-                                else {
-
+                                else{
                                     GroupNamesList.add(groupnameInput.getText().toString());
                                     adapter.setData(GroupNamesList);
                                     //adapter.writeData(GroupNamesList);
@@ -95,11 +94,12 @@ public class MainActivity extends AppCompatActivity {
         });
         groups_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(MainActivity.this, Group.class);
-                startActivity(i);
-                finish();
-            }
+            public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
+              String listview = groups_listview.toString();
+              Intent intent = new Intent(MainActivity.this,Group.class);
+              intent.putExtra("Value", listview);
+              startActivity(intent);
+        }
         });
     }
     class GroupAdapter extends BaseAdapter{
