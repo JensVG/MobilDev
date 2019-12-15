@@ -13,7 +13,6 @@
         <activity android:name=".Group" />
         <activity android:name=".View_Event"></activity>
         <activity android:name=".View_Group" />
-        <activity android:name=".Group" />
         <activity android:name=".Pop" />
         <activity
             android:name=".MainActivity"

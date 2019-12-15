@@ -12,14 +12,14 @@
         android:layout_height="wrap_content">
 
         <ListView
-            android:id="@+id/listview_EmpyGroupList"
+            android:id="@+id/listview_GroupList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollIndicators="right"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
 
-            tools:layout_editor_absoluteY="142dp"></ListView>
+            tools:layout_editor_absoluteY="142dp"/>
     </ScrollView>
 
     <TextView
