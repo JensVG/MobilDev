@@ -41,6 +41,8 @@ public class Pop extends AppCompatActivity {
         setContentView(R.layout.activity_pop);
         submitGroupBtn = (Button) findViewById(R.id.submitGroupBtn);
         et = findViewById(R.id.editText);
+        Intent intent = getIntent();
+
         submitGroupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,8 +52,10 @@ public class Pop extends AppCompatActivity {
                     OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
                     outputWriter.write(et.getText().toString() + ",");
                     outputWriter.close();
+                    Toast.makeText(getBaseContext(), "Group Added!",Toast.LENGTH_SHORT).show();
                 }
                 catch(Exception e){
+                    Toast.makeText(getBaseContext(), "Group Not Added!",Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
 
@@ -60,7 +64,8 @@ public class Pop extends AppCompatActivity {
 
                 else{
                 //Display file saved message
-                Toast.makeText(getBaseContext(), "Group Added!",Toast.LENGTH_SHORT).show();
+
+
                 Intent i = new Intent(Pop.this, Group.class);
                 st = et.getText().toString();
                 i.putExtra("Value", st);
