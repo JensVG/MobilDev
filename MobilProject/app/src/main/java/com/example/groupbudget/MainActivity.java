@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if(groupnameInput.getText().toString().equals(""))
-                                    Toast.makeText(MainActivity.this,"Please add an valide group name",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity.this,"ERROR : empty group name",Toast.LENGTH_SHORT).show();
 
                                 else {
 
