@@ -50,9 +50,6 @@ public class Pop extends AppCompatActivity {
                     OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
                     outputWriter.write(et.getText().toString() + ",");
                     outputWriter.close();
-
-                    //Display file saved message
-                    Toast.makeText(getBaseContext(), "Group Added!",Toast.LENGTH_SHORT).show();
                 }
                 catch(Exception e){
                     e.printStackTrace();
@@ -62,6 +59,8 @@ public class Pop extends AppCompatActivity {
                   Toast.makeText(Pop.this,"Please add an group name", Toast.LENGTH_SHORT).show();
 
                 else{
+                //Display file saved message
+                Toast.makeText(getBaseContext(), "Group Added!",Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(Pop.this, Group.class);
                 st = et.getText().toString();
                 i.putExtra("Value", st);
