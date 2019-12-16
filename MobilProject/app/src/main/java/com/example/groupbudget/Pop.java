@@ -60,7 +60,7 @@ public class Pop extends AppCompatActivity {
                 }
 
                 if(et.getText().toString().equals(""))
-                  Toast.makeText(Pop.this,"Please add an group name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Pop.this,"Please add an group name", Toast.LENGTH_SHORT).show();
 
                 else{
                 //Display file saved message

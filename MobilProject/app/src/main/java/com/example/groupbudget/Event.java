@@ -54,7 +54,9 @@ public class Event extends AppCompatActivity {
 
                     else
                         Toast.makeText(Event.this, "Please insert a cost price", Toast.LENGTH_SHORT).show();
-                } else {
+                }
+
+                else {
                     int number1 = Integer.parseInt(et3.getText().toString());
                     int number2 = Integer.parseInt(et4.getText().toString());
                     int Price = number2 / number1;
@@ -68,6 +70,7 @@ public class Event extends AppCompatActivity {
                     i.putExtra("aantal", st3);
                     i.putExtra("bedrag", st4);
 
+                    Toast.makeText(Event.this,"Event Added!", Toast.LENGTH_SHORT).show();
                     startActivity(i);
                     finish();
                     //startActivityForResult(i,1);

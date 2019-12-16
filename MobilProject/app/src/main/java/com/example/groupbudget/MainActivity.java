@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                                 if(groupnameInput.getText().toString().equals(""))
                                     Toast.makeText(MainActivity.this,"ERROR : empty group name",Toast.LENGTH_SHORT).show();
                                 else{
+                                    Toast.makeText(MainActivity.this,"Group Added!",Toast.LENGTH_SHORT).show();
                                     GroupNamesList.add(groupnameInput.getText().toString());
                                     adapter.setData(GroupNamesList);
                                     //adapter.writeData(GroupNamesList);
