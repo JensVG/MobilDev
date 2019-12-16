@@ -66,7 +66,7 @@ public class Group extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        tv = findViewById(R.id.textView);
+        tv = findViewById(R.id.GroupName);
         tv2 = findViewById(R.id.textView2);
         tv3 = findViewById(R.id.textView3);
         tv4 = findViewById(R.id.textView4);

@@ -11,4 +11,8 @@
     <string name="btn_add_member">Add Member</string>
     <string name="txt_eventsHeader">Events:</string>
     <string name="btn_add_event">Add Event</string>
+    <string name="EmptyMemberListPreview">Add new Member</string>
+    <string name="members_header">Members:</string>
+    <string name="EmptyEventListPreview">Add new Event</string>
+    <string name="event_header">Events:</string>
 </resources>

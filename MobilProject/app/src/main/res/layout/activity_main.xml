@@ -6,6 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <TextView
+        android:id="@+id/mainPage_Header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Groups:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#6D0C0A0A"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <ScrollView
         android:id="@+id/scrollable"
@@ -41,7 +53,7 @@
         android:id="@+id/addGroupBtn"
         android:layout_width="132dp"
         android:layout_height="65dp"
-        android:layout_gravity="bottom|end"
+        android:layout_gravity="center_horizontal"
         android:layout_margin="@dimen/fab_margin"
         android:background="#009688"
         android:text="@string/add_group"
