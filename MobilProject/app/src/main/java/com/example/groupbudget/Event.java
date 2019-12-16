@@ -44,43 +44,35 @@ public class Event extends AppCompatActivity {
         submitEventBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               if(et2.getText().toString().equals("") || et3.getText().toString().equals("") || et4.getText().toString().equals("")){
+                if (et2.getText().toString().equals("") || et3.getText().toString().equals("") || et4.getText().toString().equals("")) {
 
-                   if(et2.getText().toString().equals(""))
-                       Toast.makeText(Event.this,"Please add an event name",Toast.LENGTH_SHORT).show();
+                    if (et2.getText().toString().equals(""))
+                        Toast.makeText(Event.this, "Please add an event name", Toast.LENGTH_SHORT).show();
 
-                   else if(et3.getText().toString().equals(""))
-                   Toast.makeText(Event.this,"Please insert number of people",Toast.LENGTH_SHORT).show();
+                    else if (et3.getText().toString().equals(""))
+                        Toast.makeText(Event.this, "Please insert number of people", Toast.LENGTH_SHORT).show();
 
-                   else
-                       Toast.makeText(Event.this,"Please insert a cost price",Toast.LENGTH_SHORT).show();
-               }
-               else{
-                   int number1 = Integer.parseInt(et3.getText().toString());
-                   int number2 = Integer.parseInt(et4.getText().toString());
-                   int Price = number2 / number1;
-                   Intent i = new Intent(Event.this, Group.class);
-                   st2 = et2.getText().toString();
-                   st3 = et3.getText().toString();
-                   st4 = et4.getText().toString();
+                    else
+                        Toast.makeText(Event.this, "Please insert a cost price", Toast.LENGTH_SHORT).show();
+                } else {
+                    int number1 = Integer.parseInt(et3.getText().toString());
+                    int number2 = Integer.parseInt(et4.getText().toString());
+                    int Price = number2 / number1;
+                    Intent i = new Intent(Event.this, Group.class);
+                    st2 = et2.getText().toString();
+                    st3 = et3.getText().toString();
+                    et4.setText(String.valueOf(Price));
+                    st4 = et4.getText().toString();
 
-                   i.putExtra("Momenteel is er nog geen activiteit vast gesteld", st2);
-                   i.putExtra("aantal", st3);
-                   i.putExtra("bedrag", st4);
+                    i.putExtra("Momenteel is er nog geen activiteit vast gesteld", st2);
+                    i.putExtra("aantal", st3);
+                    i.putExtra("bedrag", st4);
 
-                   startActivity(i);
-                   finish();
-                   //startActivityForResult(i,1);
-               }
+                    startActivity(i);
+                    finish();
+                    //startActivityForResult(i,1);
+                }
             }
         });
-    }
-
-    public void Invullen1(){
-
-        Intent i = new Intent(Event.this, Group.class);
-        st2 = et2.getText().toString();
-        i.putExtra("Momenteel is er nog geen activiteit vast gesteld", st2);
-        startActivity(i);
     }
 }
