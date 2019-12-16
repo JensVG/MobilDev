@@ -29,6 +29,7 @@ import java.io.InputStreamReader;
 
 public class Group extends AppCompatActivity {
     private Button addEventBtn;
+    private Button goBackBtn;
     private TextView tv;
     private String st;
     private TextView tv2;
@@ -69,19 +70,32 @@ public class Group extends AppCompatActivity {
         tv2 = findViewById(R.id.textView2);
         tv3 = findViewById(R.id.textView3);
         tv4 = findViewById(R.id.textView4);
+
         st = getIntent().getExtras().getString("Value");
         st2 = getIntent().getExtras().getString("Momenteel is er nog geen activiteit vast gesteld");
         st3 = getIntent().getExtras().getString("aantal");
         st4 = getIntent().getExtras().getString("bedrag");
+
         tv.setText(st);
         tv2.setText(st2);
         tv3.setText(st3);
         tv4.setText(st4);
+
         addEventBtn = (Button) findViewById(R.id.addEventBtn);
         addEventBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Group.this, Event.class);
+                 @Override
+                 public void onClick(View view) {
+                 Intent i = new Intent(Group.this, Event.class);
+                 startActivity(i);
+                 finish();
+             }
+        });
+
+        goBackBtn =(Button)findViewById(R.id.goBackBtn);
+        goBackBtn.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick (View view){
+                Intent i = new Intent(Group.this, MainActivity.class);
                 startActivity(i);
                 finish();
             }
