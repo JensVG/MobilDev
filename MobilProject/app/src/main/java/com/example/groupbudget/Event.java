@@ -58,8 +58,8 @@ public class Event extends AppCompatActivity {
 
                 else {
                     int number1 = Integer.parseInt(et3.getText().toString());
-                    int number2 = Integer.parseInt(et4.getText().toString());
-                    int Price = number2 / number1;
+                    double number2 = Integer.parseInt(et4.getText().toString());
+                    double Price = number2 / number1;
                     Intent i = new Intent(Event.this, Group.class);
                     st2 = et2.getText().toString();
                     st3 = et3.getText().toString();
