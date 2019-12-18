@@ -1,5 +1,6 @@
 package com.example.groupbudget;
 
+        import android.app.Dialog;
         import android.content.Context;
         import android.content.DialogInterface;
         import android.content.Intent;
@@ -42,12 +43,15 @@ package com.example.groupbudget;
         import java.io.InputStreamReader;
         import java.io.OutputStreamWriter;
         import java.nio.Buffer;
+        import java.nio.file.attribute.PosixFileAttributes;
         import java.util.ArrayList;
         import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     final List<String>GroupNamesList = new ArrayList<>();
+    private TextView placeHolder ;
+    private ScrollView scrollView ;
     public static final String GROUPNAME=
             "com.example.android.groupbudget.extra.GROUPNAMES";
 
@@ -55,19 +59,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        placeHolder = findViewById(R.id.txt_EmptyGroupPlaceHolder);
+        scrollView = findViewById(R.id.scrollable);
         final ListView groups_listview =  findViewById(R.id.listview_GroupList);
         final Button addGroupBtn = findViewById(R.id.addGroupBtn);
         final GroupAdapter adapter = new GroupAdapter();
-        final TextView placeHolder = findViewById(R.id.txt_EmptyGroupPlaceHolder);
-        final ScrollView scrollView = findViewById(R.id.scrollable);
 
         //Read groupnames
         ReadGroups();
-        if(!GroupNamesList.isEmpty()){
-            scrollView.setVisibility(View.VISIBLE);
-            placeHolder.setVisibility(View.GONE);
-        }
+        CheckEmptyList();
         adapter.setData(GroupNamesList);
         groups_listview.setAdapter(adapter);
         //Add Group
@@ -89,9 +89,7 @@ public class MainActivity extends AppCompatActivity {
                                     Toast.makeText(MainActivity.this,"Group Added!",Toast.LENGTH_SHORT).show();
                                     GroupNamesList.add(groupnameInput.getText().toString());
                                     adapter.setData(GroupNamesList);
-
-                                    scrollView.setVisibility(View.VISIBLE);
-                                    placeHolder.setVisibility(View.GONE);
+                                    CheckEmptyList();
                                 }
                             }
                         })
@@ -100,15 +98,34 @@ public class MainActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+        //Delete Group
+        groups_listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("Delete this group?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                GroupNamesList.remove(position);
+                                adapter.setData(GroupNamesList);
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .create();
+                dialog.show();
+                return true;
+            }
+        });
         //Go to Group
         groups_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
-              final TextView item = (TextView) groups_listview.findFocus();
-              final String item_groupname = item.getText().toString();
+              //TextView item = (TextView) groups_listview.getSelectedItem();
+              String item_groupname = view.toString();
 
 
-              Intent intent = new Intent(MainActivity.this,Group.class);
+              Intent intent = new Intent(MainActivity.this, Group.class);
               intent.putExtra("GROUPNAME", item_groupname);
               startActivity(intent);
         }
@@ -119,8 +136,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause(){
         super.onPause();
         SaveGroups();
+        CheckEmptyList();
     }
-
+    private void CheckEmptyList(){
+        if (GroupNamesList.isEmpty()){
+            scrollView.setVisibility(View.GONE);
+            placeHolder.setVisibility(View.VISIBLE);
+        }
+        else {
+            scrollView.setVisibility(View.VISIBLE);
+            placeHolder.setVisibility(View.GONE);
+        }
+    }
     private void SaveGroups(){
         try{
             File file = new File(this.getFilesDir(), "groupnames");
@@ -158,7 +185,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
     class GroupAdapter extends BaseAdapter{
         List<String> list = new ArrayList<>();
         String GroupNames = new String();
@@ -186,13 +212,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            if (convertView == null){
 
-            View rowView = inflater.inflate(R.layout.group_item, parent, false);
-            TextView textview = rowView.findViewById(R.id.itemGroup);
-
+                LayoutInflater inflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(R.layout.group_item, parent, false);
+            }
+            TextView textview = convertView.findViewById(R.id.itemGroup);
             textview.setText(list.get(position));
-            return rowView;
+            return convertView;
         }
     }
 }

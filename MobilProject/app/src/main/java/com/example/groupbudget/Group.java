@@ -57,6 +57,7 @@ public class Group extends AppCompatActivity {
     TextView groupName_textview;
 
     //FIELDS
+    private String _groupname;
     final List<String> MembersList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,7 @@ public class Group extends AppCompatActivity {
         setContentView(R.layout.activity_group);
 
         //GET GROUPNAME
-        final String _groupname = getIntent().getStringExtra(MainActivity.GROUPNAME);
+        _groupname = getIntent().getStringExtra(MainActivity.GROUPNAME);
         final TextView groupName_textview = findViewById(R.id.GroupName);
         groupName_textview.setText(_groupname);
 
@@ -208,13 +209,15 @@ public class Group extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = (LayoutInflater) Group.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            if (convertView == null){
+                LayoutInflater inflater = (LayoutInflater) Group.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(R.layout.group_item, parent, false);
+            }
 
-            View rowView = inflater.inflate(R.layout.group_item, parent, false);
-            TextView textview = rowView.findViewById(R.id.itemGroup);
+            TextView textview = convertView.findViewById(R.id.itemGroup);
 
             textview.setText(list.get(position));
-            return rowView;
+            return convertView;
         }
     }
 }
