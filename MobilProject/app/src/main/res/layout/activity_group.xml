@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_membersHeader">
 
         <ListView
-            android:id="@+id/listview_GroupList"
+            android:id="@+id/listview_MemberList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollIndicators="right"

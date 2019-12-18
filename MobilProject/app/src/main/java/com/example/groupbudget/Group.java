@@ -1,8 +1,16 @@
 package com.example.groupbudget;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.renderscript.Sampler;
+import android.widget.BaseAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.content.Intent;
 
@@ -23,11 +31,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
 import org.w3c.dom.Text;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Group extends AppCompatActivity {
+    //TEMPORARY
     private Button addEventBtn;
     private Button goBackBtn;
     private TextView tv;
@@ -41,12 +56,26 @@ public class Group extends AppCompatActivity {
     static final int READ_BLOCK_SIZE = 100;
     TextView groupName_textview;
 
+    //FIELDS
+    final List<String> MembersList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
-        groupName_textview = (TextView)findViewById(R.id.GroupName);
-        //Read Group name from file
+
+        //GET GROUPNAME
+        final String _groupname = getIntent().getStringExtra(MainActivity.GROUPNAME);
+        final TextView groupName_textview = findViewById(R.id.GroupName);
+        groupName_textview.setText(_groupname);
+
+        //Members
+        final Button btn_addMember = findViewById(R.id.add_member_btn);
+        final ScrollView scrl_members = findViewById(R.id.scrollableMembers);
+        final TextView txt_placeholderMembers = findViewById(R.id.txt_EmptyMembersPlaceHolder);
+        final ListView listview_Members = findViewById(R.id.listview_MemberList);
+        final MemberAdapter member_adapter = new MemberAdapter();
+
+        //Read Group Items from file
         try{
             FileInputStream fileIn=openFileInput("groupnamefile.txt");
             InputStreamReader InputRead= new InputStreamReader(fileIn);
@@ -65,6 +94,39 @@ public class Group extends AppCompatActivity {
         catch (Exception e){
             e.printStackTrace();
         }
+
+        //Add MemberButton
+        btn_addMember.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                final EditText memberInput = new EditText(Group.this);
+                memberInput.setSingleLine();
+                AlertDialog dialog = new AlertDialog.Builder(Group.this )
+                        .setTitle("Add a new Member")
+                        .setMessage("What is the name of your new member?")
+                        .setView(memberInput)
+                        .setPositiveButton("Add Member", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if(memberInput.getText().toString().equals(""))
+                                    Toast.makeText(Group.this,"ERROR : empty group name",Toast.LENGTH_SHORT).show();
+                                else{
+                                    Toast.makeText(Group.this,"Group Added!",Toast.LENGTH_SHORT).show();
+                                    MembersList.add(memberInput.getText().toString());
+                                    member_adapter.setData(MembersList);
+                                    //adapter.writeData(GroupNamesList);
+                                    scrl_members.setVisibility(View.VISIBLE);
+                                    txt_placeholderMembers.setVisibility(View.GONE);
+                                }
+                            }
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .create();
+                dialog.show();
+            }
+        });
+
+
 
         tv = findViewById(R.id.GroupName);
         tv2 = findViewById(R.id.textView2);
@@ -100,5 +162,59 @@ public class Group extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    class MemberAdapter extends BaseAdapter {
+        List<String> list = new ArrayList<>();
+        String MemberName = new String();
+        void setData(List<String> gList){
+            list.clear();
+            list.addAll(gList);
+            notifyDataSetChanged();
+
+        }
+        void writeData(List<String> gList){
+
+            for (String names : gList){
+                MemberName += names + ",";
+            }
+            //Write to file
+            try{
+                FileOutputStream fileout=openFileOutput(groupName_textview.getText().toString() +"_memberlist_file.txt", MODE_PRIVATE);
+                OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
+                outputWriter.write(MemberName);
+                outputWriter.close();
+                Toast.makeText(getBaseContext(), "Member Added!",Toast.LENGTH_SHORT).show();
+            }
+            catch(Exception e){
+                Toast.makeText(getBaseContext(), "Member Not Added!",Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return list.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = (LayoutInflater) Group.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            View rowView = inflater.inflate(R.layout.group_item, parent, false);
+            TextView textview = rowView.findViewById(R.id.itemGroup);
+
+            textview.setText(list.get(position));
+            return rowView;
+        }
     }
 }
