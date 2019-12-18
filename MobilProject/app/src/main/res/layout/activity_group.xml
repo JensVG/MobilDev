@@ -13,7 +13,7 @@
         android:layout_marginTop="24dp"
         android:text="Value"
         android:textAlignment="center"
-        android:textColor="@android:color/holo_green_dark"
+        android:textColor="@android:color/black"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,8 +37,7 @@
     <ScrollView
         android:id="@+id/scrollableMembers"
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:visibility="gone"
+        android:layout_height="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_membersHeader">
@@ -54,30 +53,16 @@
             tools:layout_editor_absoluteY="142dp"/>
     </ScrollView>
 
-    <TextView
-        android:id="@+id/txt_EmptyMembersPlaceHolder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal|center_vertical"
-        android:paddingTop="16dp"
-        android:text="@string/EmptyMemberListPreview"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#6D0C0A0A"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:layout_constraintTop_toBottomOf="@+id/scrollableMembers">
-    </TextView>
 
     <Button
-        android:id="@+id/add_member_btn"
+        android:id="@+id/addMemberBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#009688"
         android:text="Add Member"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_EmptyMembersPlaceHolder" />
+        app:layout_constraintTop_toBottomOf="@id/scrollableMembers" />
 
     <TextView
         android:id="@+id/txt_eventsHeader"
@@ -90,13 +75,12 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_member_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/addMemberBtn" />
 
     <ScrollView
         android:id="@+id/scrollableEvents"
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:visibility="gone"
+        android:layout_height="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_eventsHeader">
@@ -111,20 +95,6 @@
             tools:layout_editor_absoluteY="142dp"/>
     </ScrollView>
 
-    <TextView
-        android:id="@+id/txt_EmptyEventsPlaceHolder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal|center_vertical"
-        android:paddingTop="16dp"
-        android:text="@string/EmptyEventListPreview"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#6D0C0A0A"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:visibility="visible"
-        app:layout_constraintTop_toBottomOf="@+id/scrollableEvents">
-    </TextView>
 
     <Button
         android:id="@+id/addEventBtn"
@@ -134,11 +104,11 @@
         android:text="Add Event"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txt_EmptyEventsPlaceHolder" />
+        app:layout_constraintTop_toBottomOf="@id/scrollableEvents" />
 
 
-    //////
-    <TextView
+    //OLD CODE
+    <!--<TextView
         android:id="@+id/textView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -207,7 +177,7 @@
         android:text="Go Back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

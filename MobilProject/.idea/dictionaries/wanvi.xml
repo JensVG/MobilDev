@@ -2,6 +2,7 @@
   <dictionary name="wanvi">
     <words>
       <w>groupitem</w>
+      <w>groupname</w>
     </words>
   </dictionary>
 </component>

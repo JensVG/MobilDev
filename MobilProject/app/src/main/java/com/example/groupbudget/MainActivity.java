@@ -57,47 +57,47 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        placeHolder = findViewById(R.id.txt_EmptyGroupPlaceHolder);
-        scrollView = findViewById(R.id.scrollable);
-        final ListView groups_listview =  findViewById(R.id.listview_GroupList);
-        final Button addGroupBtn = findViewById(R.id.addGroupBtn);
-        final GroupAdapter adapter = new GroupAdapter();
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+            placeHolder = findViewById(R.id.txt_EmptyGroupPlaceHolder);
+            scrollView = findViewById(R.id.scrollable);
+            final ListView groups_listview =  findViewById(R.id.listview_GroupList);
+            final Button addGroupBtn = findViewById(R.id.addGroupBtn);
+            final GroupAdapter adapter = new GroupAdapter();
 
-        //Read groupnames
-        ReadGroups();
-        CheckEmptyList();
-        adapter.setData(GroupNamesList);
-        groups_listview.setAdapter(adapter);
-        //Add Group
-        addGroupBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                final EditText groupnameInput = new EditText(MainActivity.this);
-                groupnameInput.setSingleLine();
-                AlertDialog dialog = new AlertDialog.Builder(MainActivity.this )
-                        .setTitle("Add a new Group")
-                        .setMessage("What is the name of your group?")
-                        .setView(groupnameInput)
-                        .setPositiveButton("Add Group", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                if(groupnameInput.getText().toString().equals(""))
-                                    Toast.makeText(MainActivity.this,"ERROR : empty group name",Toast.LENGTH_SHORT).show();
-                                else{
-                                    Toast.makeText(MainActivity.this,"Group Added!",Toast.LENGTH_SHORT).show();
-                                    GroupNamesList.add(groupnameInput.getText().toString());
-                                    adapter.setData(GroupNamesList);
-                                    CheckEmptyList();
+            //Read groupnames
+            ReadGroups();
+            CheckEmptyList();
+            adapter.setData(GroupNamesList);
+            groups_listview.setAdapter(adapter);
+            //Add Group
+            addGroupBtn.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+                    final EditText groupnameInput = new EditText(MainActivity.this);
+                    groupnameInput.setSingleLine();
+                    AlertDialog dialog = new AlertDialog.Builder(MainActivity.this )
+                            .setTitle("Add a new Group")
+                            .setMessage("What is the name of your group?")
+                            .setView(groupnameInput)
+                            .setPositiveButton("Add Group", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if(groupnameInput.getText().toString().equals(""))
+                                        Toast.makeText(MainActivity.this,"ERROR : empty group name",Toast.LENGTH_SHORT).show();
+                                    else{
+                                        Toast.makeText(MainActivity.this,"Group Added!",Toast.LENGTH_SHORT).show();
+                                        GroupNamesList.add(groupnameInput.getText().toString());
+                                        adapter.setData(GroupNamesList);
+                                        CheckEmptyList();
+                                    }
                                 }
-                            }
-                        })
-                        .setNegativeButton("Cancel", null)
-                        .create();
-                dialog.show();
-            }
-        });
+                            })
+                            .setNegativeButton("Cancel", null)
+                            .create();
+                    dialog.show();
+                }
+            });
         //Delete Group
         groups_listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -121,12 +121,11 @@ public class MainActivity extends AppCompatActivity {
         groups_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
-              //TextView item = (TextView) groups_listview.getSelectedItem();
-              String item_groupname = view.toString();
-
+              //TextView item = (TextView) adapter.getSelectedItem();
+              String item =  GroupNamesList.get(position);
 
               Intent intent = new Intent(MainActivity.this, Group.class);
-              intent.putExtra("GROUPNAME", item_groupname);
+              intent.putExtra("GROUPNAME", item);
               startActivity(intent);
         }
         });
@@ -187,7 +186,6 @@ public class MainActivity extends AppCompatActivity {
     }
     class GroupAdapter extends BaseAdapter{
         List<String> list = new ArrayList<>();
-        String GroupNames = new String();
         void setData(List<String> gList){
             list.clear();
             list.addAll(gList);

@@ -21,7 +21,6 @@
         android:theme="@style/AppTheme" >
         <activity android:name="com.example.groupbudget.Event" />
         <activity android:name="com.example.groupbudget.Group" />
-        <activity android:name="com.example.groupbudget.Pop" />
         <activity
             android:name="com.example.groupbudget.MainActivity"
             android:label="@string/app_name"
