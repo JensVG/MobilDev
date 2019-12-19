@@ -5,17 +5,26 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="4dp"
     tools:context=".Event">
 
     <TextView
+        android:id="@+id/EventName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/EventName"
         android:text="Event Name"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="30sp"/>
-
+    <TextView
+        android:id="@+id/PaymentHeader"
+        android:text="Payments: "
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#6D0C0A0A"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
     <ScrollView
         android:id="@+id/scrollable"
         android:layout_width="wrap_content"
@@ -27,11 +36,12 @@
             android:layout_height="wrap_content"
             android:scrollIndicators="right" />
     </ScrollView>
+
     <Button
         android:id="@+id/addPaymentBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#009688"
+        android:fontFamily="@font/bree_serif"
         android:text="Add Payment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,6 +56,12 @@
         android:textColor="@android:color/black"
         android:textSize="20sp"/>
 
+    <Button
+        android:id="@+id/btn_CalculatePayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bree_serif"
+        android:text="Calculate" />
     <ScrollView
         android:id="@+id/scrollable_PaymentPlan"
         android:layout_width="wrap_content"

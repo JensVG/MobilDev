@@ -51,12 +51,8 @@ public class Group extends AppCompatActivity {
 
     TextView groupName_textview;
     public String _groupname;
-    final List<String> MembersList = new ArrayList<>();
+    final List<String> MembersList = new ArrayList<String>();
     final List<String> EventList = new ArrayList<>();
-    public static final String EVENTNAME=
-            "com.example.android.groupbudget.extra.EVENTNAME";
-    public static final String MEMBERLIST=
-            "com.example.android.groupbudget.extra.MEMBERLIST";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,10 +181,9 @@ public class Group extends AppCompatActivity {
                 String item = parent.getAdapter().getItem(position).toString();
                 Log.d("intent", item);
 
-
                 Intent intent = new Intent(Group.this, Event.class);
                 intent.putExtra("eventname", item);
-                intent.putExtra("memberslist", MembersList.toString()); //Send members to event;
+                intent.putStringArrayListExtra("memberslist", member_adapter.getData()); //Send members to event;
                 startActivity(intent);
             }
         });
@@ -292,6 +287,12 @@ public class Group extends AppCompatActivity {
             list.addAll(gList);
             notifyDataSetChanged();
         }
+        ArrayList<String> getData(){
+            ArrayList<String> members = new ArrayList<>();
+            members.clear();
+            members.addAll(list);
+            return members;
+        }
         @Override
         public int getCount() {
             return list.size();
@@ -306,6 +307,7 @@ public class Group extends AppCompatActivity {
         public long getItemId(int position) {
             return 0;
         }
+
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {

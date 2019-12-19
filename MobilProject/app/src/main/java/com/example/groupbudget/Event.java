@@ -31,34 +31,40 @@ import java.util.List;
 public class Event extends AppCompatActivity {
 
     final List<String>CostList = new ArrayList<>(); //Loopt gelijk met PayersList
+    final List<String>CostNameList = new ArrayList<>();
     final List<Double> AmountToPayList = new ArrayList<Double>(); //Loopt gelijk met GroupsMembers
     final List<String> PayerList = new ArrayList<>(); //Loopt gelijk met CostList
     final List<String> PayPlanList = new ArrayList<>();
-    List<String> GroupMembers = new ArrayList<>();
-    String _groupname, _eventname;
+    private List<String> GroupMembers = new ArrayList<>();
+    private String _groupname, _eventname;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_event);
         //INTENT
         Bundle bundle = getIntent().getExtras();
         _groupname = bundle.getString("groupname");
-        GroupMembers = bundle.getStringArrayList("memberlist");
+        GroupMembers = bundle.getStringArrayList("memberslist");
         _eventname = bundle.getString("eventname");
-        Log.d("Event", "OKE");
-        
+
+        final TextView EvenName = findViewById(R.id.EventName);
+        EvenName.setText(_eventname);
+
         //Payments
         final Button btn_addCost = findViewById(R.id.addPaymentBtn);
         final ListView lv_Cost = findViewById(R.id.listview_PayList);
         final CostAdapter cost_adapter = new CostAdapter();
+        ReadPayments();
         cost_adapter.setData(CostList);
         lv_Cost.setAdapter(cost_adapter);
 
         //PaymentPlan
+        final Button btn_calculate = findViewById(R.id.btn_CalculatePayment);
         final ListView lv_Payplan = findViewById(R.id.listview_PaymentPlan);
         final PaymentPlanAdapter payplan_adapter = new PaymentPlanAdapter();
+
         payplan_adapter.setData(PayPlanList);
         lv_Payplan.setAdapter(payplan_adapter);
 
@@ -66,45 +72,81 @@ public class Event extends AppCompatActivity {
         btn_addCost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final EditText paymentInput = new EditText(Event.this);
+                final EditText costNameInput = new EditText(Event.this);
                 final EditText amountInput = new EditText(Event.this);
+                final CharSequence[] people = GroupMembers.toArray(new CharSequence[0]);
 
-                paymentInput.setSingleLine();
-                AlertDialog dialog = new AlertDialog.Builder(Event.this )
+                costNameInput.setSingleLine();
+                AlertDialog dialog_costName = new AlertDialog.Builder(Event.this )
                         .setTitle("Add a new Cost")
                         .setMessage("Name of the cost: ")
-                        .setView(paymentInput)
-                        .setMessage("Give the amount of money you spent: ")
-                        .setView(amountInput)
-                        .setMessage("Who paid?")
-                        .setItems((CharSequence[]) GroupMembers.toArray(), new DialogInterface.OnClickListener() {
+                        .setView(costNameInput)
+
+                        .setPositiveButton("Add cost name", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                PayerList.add(GroupMembers.get(which));
+                                if(costNameInput.getText().toString().equals(""))
+                                    Toast.makeText(Event.this,"ERROR : empty cost name",Toast.LENGTH_SHORT).show();
+                                else{
+                                    CostNameList.add(costNameInput.getText().toString());
+                                    cost_adapter.setData(CostList);// CHANGE TO COSTNAME ADAPTER
+                                }
                             }
                         })
+                        .setNegativeButton("Cancel", null)
+                        .create();
+                dialog_costName.show();
+
+                AlertDialog dialog_amount = new AlertDialog.Builder(Event.this)
+                        .setTitle("Add a new Cost")
+                        .setMessage("Give the amount of money you spent: ")
+                        .setView(amountInput)
+
                         .setPositiveButton("Add Cost", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                if(paymentInput.getText().toString().equals(""))
-                                    Toast.makeText(Event.this,"ERROR : empty Payment name",Toast.LENGTH_SHORT).show();
-                                else if (amountInput.getText().toString().equals(""))
+                                if (amountInput.getText().toString().equals(""))
                                     Toast.makeText(Event.this,"ERROR : empty Amount name",Toast.LENGTH_SHORT).show();
                                 else if (!tryParseDouble(amountInput.getText().toString()))
                                     Toast.makeText(Event.this,"ERROR : amount is no number",Toast.LENGTH_SHORT).show();
                                 else{
                                     Toast.makeText(Event.this,"Cost Added!",Toast.LENGTH_SHORT).show();
-                                    CostList.add(paymentInput.getText().toString());
+                                    CostList.add(amountInput.getText().toString());
                                     cost_adapter.setData(CostList);
                                 }
                             }
                         })
                         .setNegativeButton("Cancel", null)
                         .create();
-                dialog.show();
+                dialog_amount.show();
+
+                AlertDialog dialog_payer = new AlertDialog.Builder(Event.this)
+                        .setTitle("Who paid?")
+                        .setItems(people, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                PayerList.add(GroupMembers.get(which));
+                            }
+                        })
+
+                        .setPositiveButton("Add Cost", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(Event.this,"Cost Added!",Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .create();
+                dialog_payer.show();
             }
         });
-
+        btn_calculate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CalculatePayment();
+                DecidePayPlan();
+            }
+        });
     }
     //METHODS
     boolean tryParseDouble(String value){
@@ -117,7 +159,11 @@ public class Event extends AppCompatActivity {
             return  false;
         }
     }
-
+    @Override
+    protected void onPause(){
+        super.onPause();
+        SavePayments();
+    }
     //Read & Save Payments
     private void SavePayments(){
         try{
