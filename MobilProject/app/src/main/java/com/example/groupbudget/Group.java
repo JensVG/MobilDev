@@ -47,7 +47,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Group extends AppCompatActivity {
-    //TEMPORARY
+   /* //TEMPORARY
     private Button addEventBtn;
     private Button goBackBtn;
     private TextView tv;
@@ -58,9 +58,10 @@ public class Group extends AppCompatActivity {
     private String st3;
     private TextView tv4;
     private String st4;
-    TextView groupName_textview;
+    TextView groupName_textview;*/
 
     //FIELDS
+    TextView groupName_textview;
     private String _groupname = "groupname";
     final List<String> MembersList = new ArrayList<>();
     final List<String> EventList = new ArrayList<>();
@@ -76,7 +77,7 @@ public class Group extends AppCompatActivity {
 
         //GET GROUPNAME
         _groupname = getIntent().getStringExtra(MainActivity.GROUPNAME);
-        final TextView groupName_textview = findViewById(R.id.GroupName);
+        groupName_textview = findViewById(R.id.GroupName);
         groupName_textview.setText(_groupname);
 
         //Members
@@ -91,6 +92,9 @@ public class Group extends AppCompatActivity {
         final Button btn_addEvent = findViewById(R.id.addEventBtn);
         final ListView lv_Events = findViewById(R.id.listview_EventList);
         final EventAdapter event_adapter = new EventAdapter();
+        ReadEvents();
+        event_adapter.setData(EventList);
+        lv_Events.setAdapter(event_adapter);
 
         //Add MemberButton
         btn_addMember.setOnClickListener(new View.OnClickListener(){

@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
               String item =  GroupNamesList.get(position);
 
               Intent intent = new Intent(MainActivity.this, Group.class);
-              intent.putExtra("GROUPNAME", item);
+              intent.putExtra("GROUPNAME", "testGroup");
               startActivity(intent);
         }
         });
