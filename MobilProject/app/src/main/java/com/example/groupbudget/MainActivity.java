@@ -122,10 +122,10 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getAdapter().getItem(position).toString();//GET ITEM OUT OF LISTVIEW
                 Log.d("intent", item);
-              Intent intent = new Intent(MainActivity.this, Group.class);
-              intent.putExtra("groupname", item);
+                Intent intent = new Intent(MainActivity.this, Group.class);
+                intent.putExtra("groupname", item);
 
-              startActivity(intent);
+                startActivity(intent);
             }
         });
     }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,8 +34,8 @@ public class Event extends AppCompatActivity {
     final List<Double> AmountToPayList = new ArrayList<Double>(); //Loopt gelijk met GroupsMembers
     final List<String> PayerList = new ArrayList<>(); //Loopt gelijk met CostList
     final List<String> PayPlanList = new ArrayList<>();
-    private List<String> GroupMembers = new ArrayList<>();
-    private String _groupname, _eventname;
+    List<String> GroupMembers = new ArrayList<>();
+    String _groupname, _eventname;
 
 
     @Override
@@ -42,11 +43,12 @@ public class Event extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //INTENT
-        _eventname = getIntent().getStringExtra(Group.EVENTNAME);
         Bundle bundle = getIntent().getExtras();
         _groupname = bundle.getString("groupname");
-        GroupMembers = getIntent().getStringArrayListExtra(Group.MEMBERLIST);
-
+        GroupMembers = bundle.getStringArrayList("memberlist");
+        _eventname = bundle.getString("eventname");
+        Log.d("Event", "OKE");
+        
         //Payments
         final Button btn_addCost = findViewById(R.id.addPaymentBtn);
         final ListView lv_Cost = findViewById(R.id.listview_PayList);

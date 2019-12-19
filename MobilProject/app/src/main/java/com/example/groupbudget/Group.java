@@ -48,20 +48,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Group extends AppCompatActivity {
-   /* //TEMPORARY
-    private Button addEventBtn;
-    private Button goBackBtn;
-    private TextView tv;
-    private String st;
-    private TextView tv2;
-    private String st2;
-    private TextView tv3;
-    private String st3;
-    private TextView tv4;
-    private String st4;
-    TextView groupName_textview;*/
 
-    //FIELDS
     TextView groupName_textview;
     public String _groupname;
     final List<String> MembersList = new ArrayList<>();
@@ -162,7 +149,7 @@ public class Group extends AppCompatActivity {
                                 else{
                                     Toast.makeText(Group.this,"Event Added!",Toast.LENGTH_SHORT).show();
                                     EventList.add(eventInput.getText().toString());
-                                    member_adapter.setData(MembersList);
+                                    event_adapter.setData(EventList);
                                 }
                             }
                         })
@@ -173,56 +160,54 @@ public class Group extends AppCompatActivity {
         });
         //Remove Event
         //HOU REKENING MET LIJST, DIE GAAT COMPILCATER ZIJN DAN GEWN MEMEBERS OF GROUPNAME
-
+        lv_Events.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog dialog = new AlertDialog.Builder(Group.this)
+                        .setTitle("Delete this Event?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                EventList.remove(position);
+                                member_adapter.setData(EventList);
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .create();
+                dialog.show();
+                return true;
+            }
+        });
         //Go to Event
         lv_Events.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextView item = (TextView) parent.getSelectedItem();
+                String item = parent.getAdapter().getItem(position).toString();
+                Log.d("intent", item);
 
 
                 Intent intent = new Intent(Group.this, Event.class);
-                intent.putExtra("EVENTNAME", item.getText());
-                intent.putExtra("MEMBERLIST", MembersList.toString()); //Send members to event;
+                intent.putExtra("eventname", item);
+                intent.putExtra("memberslist", MembersList.toString()); //Send members to event;
                 startActivity(intent);
             }
         });
-/*
+    }
+    //METHODS
+    @Override
+    protected void onPause(){
+        super.onPause();
+        SaveEvents();
+        SaveMembers();
 
-
-        tv = findViewById(R.id.GroupName);
-        tv2 = findViewById(R.id.textView2);
-        tv3 = findViewById(R.id.textView3);
-        tv4 = findViewById(R.id.textView4);
-
-        st = getIntent().getExtras().getString("Value");
-        st2 = getIntent().getExtras().getString("Momenteel is er nog geen activiteit vast gesteld");
-        st3 = getIntent().getExtras().getString("aantal");
-        st4 = getIntent().getExtras().getString("bedrag");
-
-        tv.setText(st);
-        tv2.setText(st2);
-        tv3.setText(st3);
-        tv4.setText(st4);
-*/
-
-/*
-        goBackBtn =(Button)findViewById(R.id.goBackBtn);
-        goBackBtn.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick (View view){
-                Intent i = new Intent(Group.this, MainActivity.class);
-                startActivity(i);
-                finish();
-            }
-        });*/
     }
     //SAVE & READ METHODS
 
     //Members
     private void SaveMembers(){
         try{
-            File file = new File(this.getFilesDir(), (groupName_textview.getText().toString() + "_memberlist_file"));
+            String FilenamePart = _groupname;
+            File file = new File(this.getFilesDir(), ( FilenamePart + "_memberlist_file"));
 
             FileOutputStream fOut = new FileOutputStream(file);
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(fOut));
@@ -242,6 +227,7 @@ public class Group extends AppCompatActivity {
         File file = new File(this.getFilesDir(), (groupName_textview.getText().toString() + "_memberlist_file"));
 
         if(!file.exists()){
+            Log.d("File", "Memberlist Doesn't exist");
             return;
         }
         try {
@@ -261,7 +247,8 @@ public class Group extends AppCompatActivity {
     //Events
     private void SaveEvents(){
         try{
-            File file = new File(this.getFilesDir(), (groupName_textview.getText().toString() + "_eventlist_file"));
+            String FileNamePart = _groupname;
+            File file = new File(this.getFilesDir(), ( FileNamePart + "_eventlist_file"));
 
             FileOutputStream fOut = new FileOutputStream(file);
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(fOut));
@@ -281,6 +268,7 @@ public class Group extends AppCompatActivity {
         File file = new File(this.getFilesDir(), (groupName_textview.getText().toString() + "_eventlist_file"));
 
         if(!file.exists()){
+            Log.d("File", "Eventlist Doesn't exist");
             return;
         }
         try {
@@ -311,7 +299,7 @@ public class Group extends AppCompatActivity {
 
         @Override
         public Object getItem(int position) {
-            return null;
+            return list.get(position);
         }
 
         @Override
@@ -346,7 +334,7 @@ public class Group extends AppCompatActivity {
 
         @Override
         public Object getItem(int position) {
-            return null;
+            return list.get(position);
         }
 
         @Override

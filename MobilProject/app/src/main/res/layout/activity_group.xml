@@ -38,6 +38,7 @@
         android:id="@+id/scrollableMembers"
         android:layout_width="wrap_content"
         android:layout_height="150dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_membersHeader">
@@ -50,7 +51,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
 
-            tools:layout_editor_absoluteY="142dp"/>
+            tools:layout_editor_absoluteY="142dp" />
     </ScrollView>
 
 
@@ -81,6 +82,7 @@
         android:id="@+id/scrollableEvents"
         android:layout_width="wrap_content"
         android:layout_height="150dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_eventsHeader">
@@ -92,7 +94,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
 
-            tools:layout_editor_absoluteY="142dp"/>
+            tools:layout_editor_absoluteY="142dp" />
     </ScrollView>
 
 
