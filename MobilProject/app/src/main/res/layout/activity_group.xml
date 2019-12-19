@@ -38,9 +38,8 @@
 
     <ScrollView
         android:id="@+id/scrollableMembers"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_membersHeader">
@@ -48,7 +47,7 @@
         <ListView
             android:id="@+id/listview_MemberList"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:scrollIndicators="right"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +65,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/scrollableMembers"
-        android:textSize="18sp" />
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/txt_eventsHeader"
@@ -79,13 +78,13 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addMemberBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/addMemberBtn"
+        android:layout_marginTop="50dp"/>
 
     <ScrollView
         android:id="@+id/scrollableEvents"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_eventsHeader">
@@ -110,7 +109,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/scrollableEvents"
-        android:textSize="18sp" />
+        android:textSize="18sp"/>
 
 
     //OLD CODE

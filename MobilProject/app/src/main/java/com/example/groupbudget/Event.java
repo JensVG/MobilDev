@@ -57,7 +57,7 @@ public class Event extends AppCompatActivity {
         final ListView lv_Cost = findViewById(R.id.listview_PayList);
         final CostAdapter cost_adapter = new CostAdapter();
         ReadPayments();
-        cost_adapter.setData(CostList);
+        cost_adapter.setData(CostNameList);
         lv_Cost.setAdapter(cost_adapter);
 
         //PaymentPlan
