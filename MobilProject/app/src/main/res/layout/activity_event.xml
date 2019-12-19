@@ -39,13 +39,14 @@
 
     <Button
         android:id="@+id/addPaymentBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
         android:fontFamily="@font/bree_serif"
         android:text="Add Payment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scrollableMembers" />
+        app:layout_constraintTop_toBottomOf="@id/scrollableMembers"
+        android:textSize="18sp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -54,14 +55,16 @@
         android:text="Payment Plan:"
         android:fontFamily="@font/bree_serif"
         android:textColor="@color/grey"
+        android:paddingTop="16dp"
         android:textSize="20sp"/>
 
     <Button
         android:id="@+id/btn_CalculatePayment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
         android:fontFamily="@font/bree_serif"
-        android:text="Calculate" />
+        android:text="Calculate"
+        android:textSize="18sp" />
     <ScrollView
         android:id="@+id/scrollable_PaymentPlan"
         android:layout_width="wrap_content"

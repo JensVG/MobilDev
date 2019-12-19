@@ -59,13 +59,14 @@
 
     <Button
         android:id="@+id/addMemberBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
         android:fontFamily="@font/bree_serif"
         android:text="Add Member"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scrollableMembers" />
+        app:layout_constraintTop_toBottomOf="@id/scrollableMembers"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/txt_eventsHeader"
@@ -102,13 +103,14 @@
 
     <Button
         android:id="@+id/addEventBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="55dp"
         android:fontFamily="@font/bree_serif"
         android:text="Add Event"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scrollableEvents" />
+        app:layout_constraintTop_toBottomOf="@id/scrollableEvents"
+        android:textSize="18sp" />
 
 
     //OLD CODE
