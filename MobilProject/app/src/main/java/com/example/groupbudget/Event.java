@@ -64,6 +64,9 @@ public class Event extends AppCompatActivity {
         final Button btn_calculate = findViewById(R.id.btn_CalculatePayment);
         final ListView lv_Payplan = findViewById(R.id.listview_PaymentPlan);
         final PaymentPlanAdapter payplan_adapter = new PaymentPlanAdapter();
+        ReadPaymentPlan();
+        payplan_adapter.setData(PayPlanList);
+        lv_Payplan.setAdapter(payplan_adapter);
 
         payplan_adapter.setData(PayPlanList);
         lv_Payplan.setAdapter(payplan_adapter);
@@ -145,6 +148,7 @@ public class Event extends AppCompatActivity {
             public void onClick(View v) {
                 CalculatePayment();
                 DecidePayPlan();
+
             }
         });
     }
@@ -163,6 +167,7 @@ public class Event extends AppCompatActivity {
     protected void onPause(){
         super.onPause();
         SavePayments();
+        SavePaymentPlan();
     }
     //Read & Save Payments
     private void SavePayments(){
@@ -185,6 +190,45 @@ public class Event extends AppCompatActivity {
     }
     private void ReadPayments(){
         File file = new File(this.getFilesDir(), (_groupname + "_" + _eventname + "_paymentlist_file"));
+
+        if(!file.exists()){
+            return;
+        }
+        try {
+            FileInputStream fIn = new FileInputStream(file);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fIn));
+            String line = reader.readLine();
+            while (line != null){
+                CostList.add(line);
+                line = reader.readLine();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Read & Save PaymentPlan
+    private void SavePaymentPlan(){
+        try{
+            File file = new File(this.getFilesDir(), (_groupname + "_" + _eventname + "_paymentplan_file"));
+
+            FileOutputStream fOut = new FileOutputStream(file);
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(fOut));
+
+            for (int i = 0 ; i < CostList.size() ; i ++){
+                writer.write(CostList.get(i));
+                writer.newLine();
+            }
+            writer.close();
+            fOut.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    private void ReadPaymentPlan(){
+        File file = new File(this.getFilesDir(), (_groupname + "_" + _eventname + "_paymentplan_file"));
 
         if(!file.exists()){
             return;
