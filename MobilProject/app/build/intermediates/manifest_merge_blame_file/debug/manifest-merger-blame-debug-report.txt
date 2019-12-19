@@ -26,8 +26,8 @@
 18        android:supportsRtl="true"
 18-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:10:9-35
 19        android:testOnly="true"
-20        android:theme="@style/AppTheme" >
-20-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:11:9-40
+20        android:theme="@style/AppTheme.NoActionBar" >
+20-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:11:9-52
 21        <activity android:name="com.example.groupbudget.Event" />
 21-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:12:9-52
 21-->D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:12:19-40

@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="4dp"
-    tools:context=".Group">
+    tools:context=".Group"
+    android:paddingLeft="16dp">
 
     <TextView
         android:id="@+id/GroupName"
-        android:layout_width="267dp"
+        android:layout_width="match_parent"
         android:layout_height="42dp"
         android:layout_marginTop="24dp"
+        android:fontFamily="@font/bree_serif"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:text="Value"
-        android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +29,7 @@
         android:layout_height="wrap_content"
         android:text="@string/members_header"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#6D0C0A0A"
+        android:textColor="@color/grey"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +48,7 @@
         <ListView
             android:id="@+id/listview_MemberList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:scrollIndicators="right"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +73,7 @@
         android:layout_height="wrap_content"
         android:text="@string/event_header"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#6D0C0A0A"
+        android:textColor="@color/grey"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,7 +92,7 @@
         <ListView
             android:id="@+id/listview_EventList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
 

@@ -8,11 +8,11 @@
     tools:context=".MainActivity">
     <TextView
         android:id="@+id/mainPage_Header"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Groups:"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#6D0C0A0A"
+        android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
         android:padding="16dp"
@@ -36,14 +36,14 @@
     <ScrollView
         android:id="@+id/scrollable"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/txt_EmptyGroupPlaceHolder">
 
         <ListView
             android:id="@+id/listview_GroupList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:scrollIndicators="right" />
     </ScrollView>
 

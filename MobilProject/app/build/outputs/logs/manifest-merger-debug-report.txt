@@ -75,7 +75,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\wa
 	android:allowBackup
 		ADDED from D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:6:9-35
 	android:theme
-		ADDED from D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:11:9-40
+		ADDED from D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:11:9-52
 activity#com.example.groupbudget.Event
 ADDED from D:\Documents\School\2EA2\Mobile_Development\AppProject\MobilDev\MobilProject\app\src\main\AndroidManifest.xml:12:9-52
 	android:name

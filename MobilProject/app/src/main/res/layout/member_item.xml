@@ -7,9 +7,10 @@
         android:id="@+id/itemMember"
 
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="16dp"
+        android:layout_height="35dp"
+        android:layout_margin="20dp"
         android:fontFamily="@font/bree_serif"
         android:gravity="center_vertical"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:textSize="16dp"/>
 </LinearLayout>
