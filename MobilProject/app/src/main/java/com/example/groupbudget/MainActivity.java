@@ -15,6 +15,7 @@ package com.example.groupbudget;
         import androidx.appcompat.widget.Toolbar;
 
         import android.telephony.SmsManager;
+        import android.util.Log;
         import android.view.Gravity;
         import android.view.LayoutInflater;
         import android.view.MotionEvent;
@@ -52,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
     final List<String>GroupNamesList = new ArrayList<>();
     private TextView placeHolder ;
     private ScrollView scrollView ;
-    public static final String GROUPNAME=
-            "com.example.android.groupbudget.extra.GROUPNAMES";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             setContentView(R.layout.activity_main);
             placeHolder = findViewById(R.id.txt_EmptyGroupPlaceHolder);
             scrollView = findViewById(R.id.scrollable);
-            final ListView groups_listview =  findViewById(R.id.listview_GroupList);
+            final ListView lv_grouplist =  findViewById(R.id.listview_GroupList);
             final Button addGroupBtn = findViewById(R.id.addGroupBtn);
             final GroupAdapter adapter = new GroupAdapter();
 
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             ReadGroups();
             CheckEmptyList();
             adapter.setData(GroupNamesList);
-            groups_listview.setAdapter(adapter);
+            lv_grouplist.setAdapter(adapter);
             //Add Group
             addGroupBtn.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -99,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         //Delete Group
-        groups_listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        lv_grouplist.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
                 AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
@@ -118,16 +117,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //Go to Group
-        groups_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv_grouplist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
-              //TextView item = (TextView) adapter.getSelectedItem();
-              String item =  GroupNamesList.get(position);
-
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getAdapter().getItem(position).toString();//GET ITEM OUT OF LISTVIEW
+                Log.d("intent", item);
               Intent intent = new Intent(MainActivity.this, Group.class);
-              intent.putExtra("GROUPNAME", "testGroup");
+              intent.putExtra("groupname", item);
+
               startActivity(intent);
-        }
+            }
         });
     }
 
@@ -193,6 +192,9 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+
+
+
         @Override
         public int getCount() {
             return list.size();
@@ -200,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Object getItem(int position) {
-            return null;
+            return list.get(position);
         }
 
         @Override

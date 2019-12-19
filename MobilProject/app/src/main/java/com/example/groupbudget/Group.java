@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.renderscript.Sampler;
+import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
@@ -62,7 +63,7 @@ public class Group extends AppCompatActivity {
 
     //FIELDS
     TextView groupName_textview;
-    private String _groupname = "groupname";
+    public String _groupname;
     final List<String> MembersList = new ArrayList<>();
     final List<String> EventList = new ArrayList<>();
     public static final String EVENTNAME=
@@ -76,8 +77,9 @@ public class Group extends AppCompatActivity {
         setContentView(R.layout.activity_group);
 
         //GET GROUPNAME
-        _groupname = getIntent().getStringExtra(MainActivity.GROUPNAME);
         groupName_textview = findViewById(R.id.GroupName);
+        Bundle bundle = getIntent().getExtras();
+        _groupname = bundle.getString("groupname");
         groupName_textview.setText(_groupname);
 
         //Members

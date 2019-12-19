@@ -43,7 +43,8 @@ public class Event extends AppCompatActivity {
 
         //INTENT
         _eventname = getIntent().getStringExtra(Group.EVENTNAME);
-        _groupname = getIntent().getStringExtra(MainActivity.GROUPNAME);
+        Bundle bundle = getIntent().getExtras();
+        _groupname = bundle.getString("groupname");
         GroupMembers = getIntent().getStringArrayListExtra(Group.MEMBERLIST);
 
         //Payments
