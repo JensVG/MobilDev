@@ -7,10 +7,12 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -68,8 +70,6 @@ public class Event extends AppCompatActivity {
         payplan_adapter.setData(PayPlanList);
         lv_Payplan.setAdapter(payplan_adapter);
 
-        payplan_adapter.setData(PayPlanList);
-        lv_Payplan.setAdapter(payplan_adapter);
 
         //Add Payment
         btn_addCost.setOnClickListener(new View.OnClickListener() {
@@ -81,8 +81,7 @@ public class Event extends AppCompatActivity {
 
                 costNameInput.setSingleLine();
                 AlertDialog dialog_costName = new AlertDialog.Builder(Event.this )
-                        .setTitle("Add a new Cost")
-                        .setMessage("Name of the cost: ")
+                        .setTitle("Name of the cost")
                         .setView(costNameInput)
 
                         .setPositiveButton("Add cost name", new DialogInterface.OnClickListener() {
@@ -92,7 +91,7 @@ public class Event extends AppCompatActivity {
                                     Toast.makeText(Event.this,"ERROR : empty cost name",Toast.LENGTH_SHORT).show();
                                 else{
                                     CostNameList.add(costNameInput.getText().toString());
-                                    cost_adapter.setData(CostList);// CHANGE TO COSTNAME ADAPTER
+                                    cost_adapter.setData(CostNameList);// CHANGE TO COSTNAME ADAPTER
                                 }
                             }
                         })
@@ -101,8 +100,7 @@ public class Event extends AppCompatActivity {
                 dialog_costName.show();
 
                 AlertDialog dialog_amount = new AlertDialog.Builder(Event.this)
-                        .setTitle("Add a new Cost")
-                        .setMessage("Give the amount of money you spent: ")
+                        .setTitle("Give the amount of money you spent: ")
                         .setView(amountInput)
 
                         .setPositiveButton("Add Cost", new DialogInterface.OnClickListener() {
@@ -115,7 +113,6 @@ public class Event extends AppCompatActivity {
                                 else{
                                     Toast.makeText(Event.this,"Cost Added!",Toast.LENGTH_SHORT).show();
                                     CostList.add(amountInput.getText().toString());
-                                    cost_adapter.setData(CostList);
                                 }
                             }
                         })
@@ -143,9 +140,51 @@ public class Event extends AppCompatActivity {
                 dialog_payer.show();
             }
         });
+        //Remove Payment
+        lv_Cost.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog dialog = new AlertDialog.Builder(Event.this)
+                        .setTitle("Delete this Payment?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                try {
+                                    CostNameList.remove(position);
+                                }
+                                catch (Exception e){
+
+                                }
+                                try {
+                                    CostList.remove(position);
+                                }
+                                catch (Exception e){
+
+                                }
+                                try {
+                                    PayerList.remove(position);
+                                }
+                                catch (Exception e){
+
+                                }
+                                cost_adapter.setData(CostNameList);
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .create();
+                dialog.show();
+                return true;
+            }
+        });
+
         btn_calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                PayPlanList.clear();
+                payplan_adapter.setData(PayPlanList);
+                if(CostNameList.isEmpty()){
+                    return;
+                }
                 CalculatePayment();
                 DecidePayPlan();
 
@@ -177,8 +216,8 @@ public class Event extends AppCompatActivity {
             FileOutputStream fOut = new FileOutputStream(file);
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(fOut));
 
-            for (int i = 0 ; i < CostList.size() ; i ++){
-                writer.write(CostList.get(i));
+            for (int i = 0 ; i < CostNameList.size() ; i ++){
+                writer.write(CostNameList.get(i));
                 writer.newLine();
             }
             writer.close();
@@ -199,7 +238,7 @@ public class Event extends AppCompatActivity {
             BufferedReader reader = new BufferedReader(new InputStreamReader(fIn));
             String line = reader.readLine();
             while (line != null){
-                CostList.add(line);
+                CostNameList.add(line);
                 line = reader.readLine();
             }
         }
@@ -216,8 +255,8 @@ public class Event extends AppCompatActivity {
             FileOutputStream fOut = new FileOutputStream(file);
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(fOut));
 
-            for (int i = 0 ; i < CostList.size() ; i ++){
-                writer.write(CostList.get(i));
+            for (int i = 0 ; i < PayPlanList.size() ; i ++){
+                writer.write(PayPlanList.get(i));
                 writer.newLine();
             }
             writer.close();
@@ -238,7 +277,7 @@ public class Event extends AppCompatActivity {
             BufferedReader reader = new BufferedReader(new InputStreamReader(fIn));
             String line = reader.readLine();
             while (line != null){
-                CostList.add(line);
+                PayPlanList.add(line);
                 line = reader.readLine();
             }
         }
